@@ -1,0 +1,27 @@
+server:
+  port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  application:
+    name: gtway
+  profiles: local
+  cloud:
+    config:
+      uri: http://localhost:8888
+#    gateway:
+#      routes:
+#      - id: employee-service
+#        uri: http://localhost:8082
+#        predicates:
+#        - Path=/employee/**
+#      - id: department-service
+#        uri: http://localhost:8084
+#        predicates:
+#        - Path=/dept/**
+#        filters:
+#        - RewritePath=/dept(?<segment>/?.*), $\{segment}   
+
