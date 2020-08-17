@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      influx:
+        db: springboot
+        uri: http://127.0.0.1:8086
+    web:
+      server:
+        auto-time-requests: true
+
+#logging:
+#  level:
+#    root: WARN
+#    com.dveamer.gateway: DEBUG
+#    reactor.netty.http.server.AccessLog: INFO
+
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    kubernetes:
+      enabled: false
+    gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 1000ms
+      routes:
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee/**
+
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true            
