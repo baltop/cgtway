@@ -24,7 +24,8 @@ management:
 
 spring:
   application:
-    name: gateway
+    name: gtway
+  pofile: local
   cloud:
     loadbalancer:
       ribbon:
