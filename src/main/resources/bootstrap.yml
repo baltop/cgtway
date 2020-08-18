@@ -15,7 +15,8 @@ management:
 spring:
   application:
     name: gtway
-  profiles: local
+  profiles: 
+    active: local
 #  cloud:
 #    config:
 #      uri: http://localhost:8888
