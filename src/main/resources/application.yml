@@ -1,5 +1,19 @@
-server:
-  port: 8081
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    kubernetes:
+      enabled: false
+    gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 1000ms
+      routes:
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee/**
 
 management:
   endpoints:
@@ -22,26 +36,6 @@ management:
 #    reactor.netty.http.server.AccessLog: INFO
 
 
-spring:
-  application:
-    name: gtway
-  profiles: 
-    active: local
-  cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
-    kubernetes:
-      enabled: false
-    gateway:
-      httpclient:
-        connect-timeout: 1000
-        response-timeout: 1000ms
-      routes:
-        - id: employee-service
-          uri: lb://employee-service
-          predicates:
-            - Path=/employee/**
 
 eureka:
   client:
