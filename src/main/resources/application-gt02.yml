@@ -1,10 +1,9 @@
 server:
   port: 8082
+  
 spring:
   profiles:
     active: gt02
-    
-spring:
   cloud:
     gateway:
       default-filters:
