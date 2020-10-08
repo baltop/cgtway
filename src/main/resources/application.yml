@@ -1,3 +1,4 @@
+# boot, application, application-gt02, cloud-config 순으로 덮어 쓰게 됨.
 server:
   port: 8081
 
@@ -23,12 +24,12 @@ management:
     web:
       exposure:
         include: "*"
-  metrics:
-    export:
-      influx:
-        db: springboot
-        uri: http://192.168.0.102:8086
-    web:
+#  metrics:
+#    export:
+#      influx:
+#        db: springboot
+#        uri: http://192.168.0.102:8086
+#    web:
       server:
         auto-time-requests: true
 
