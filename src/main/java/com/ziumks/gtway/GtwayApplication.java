@@ -21,10 +21,10 @@ public class GtwayApplication {
 		SpringApplication.run(GtwayApplication.class, args);
 	}
 
-	@RequestMapping("/fallback")
-	public Mono<String> fallback() {
-	  return Mono.just("fallback!");
-	}
+//	@RequestMapping("/fallback")
+//	public Mono<String> fallback() {
+//	  return Mono.just("fallback!");
+//	}
 
 
 	@Bean
