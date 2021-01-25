@@ -18,6 +18,22 @@ spring:
           uri: lb://employee-service
           predicates:
             - Path=/employee/**
+          filters:
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 10
+              redis-rate-limiter.burstCapacity: 20
+              redis-rate-limiter.requestedTokens: 1
+              key-resolver: "#{@userkeyresolver}"
+#              rate-limiter: "#{@myRateLimiter}"
+# keyresolver는 gtwayapplication.java에 @bean 등록
+#  token bucket algorithm 찾아보면 replenishrate, burstcapacity에 대해 이해할 수 있음.
+# spring.cloud.gateway.filter.request-rate-limiter.deny-empty-key (true or false) 으로 유저 request에 키가 없는 경우 처리
+
+  redis:
+    host: 192.168.0.102
+    port: 6379
+    database: 0              
 
 management:
   endpoints:
